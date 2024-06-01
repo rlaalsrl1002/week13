@@ -1,13 +1,16 @@
 CC = g++
-SRC = main.cpp stackIntList.cpp
-OBJ = $(SRC:.c=.o)
-EXEC = main
+CFLAGS = -Wall -std=c++11
+SRC = main.cpp MyLinkedStack.cpp
+OBJ = $(SRC:.cpp=.o)
+EXEC = stack
+
+all: $(EXEC)
 
 $(EXEC): $(OBJ)
-	$(CC) -o $@ $^
+	$(CC) $(CFLAGS) -o $@ $^
 
-%.o: %.c %.h
-	$(CC) -c $<
+%.o: %.cpp
+	$(CC) $(CFLAGS) -c $<
 
 clean:
 	rm -f $(OBJ) $(EXEC)

@@ -1,35 +1,41 @@
 #include <iostream>
 #include <string>
-#include "stackIntList.h"
+#include "MyLinkedStack.h"
 
 using namespace std;
 
-void manageIntStack() {
-    int size;
-    cin >> size;
-    StackIntList stack(size);
+void processCommands() {
+    MyLinkedStack stack;
     string command;
+    int value;
 
     while (cin >> command) {
         if (command == "push") {
-            int value;
             cin >> value;
             stack.push(value);
         } else if (command == "pop") {
-            stack.pop();
+            try {
+                cout << stack.pop() << endl;
+            } catch (const std::runtime_error& e) {
+                cout << e.what() << endl;
+            }
         } else if (command == "peek") {
-            cout << stack.peek() << endl;
+            try {
+                cout << stack.peek() << endl;
+            } catch (const std::runtime_error& e) {
+                cout << e.what() << endl;
+            }
         } else if (command == "clear") {
             stack.clear();
         } else if (command == "print") {
             stack.print();
-        } else if (command == "q") {
-            break;
         }
     }
+
+    cout << "Bye!" << endl;
 }
 
 int main() {
-    manageIntStack();
+    processCommands();
     return 0;
 }
